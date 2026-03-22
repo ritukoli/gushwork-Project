@@ -51,37 +51,6 @@
 
     let currentIndex = 0;
 
-    /**
-     * switchTo — animate main image to a new slide
-     * @param {number} idx  - target image index
-     */
-    function switchTo(idx) {
-        if (idx === currentIndex) return;
-        if (idx < 0) idx = images.length - 1;
-        if (idx >= images.length) idx = 0;
-
-        mainImage.style.transition = 'opacity 0.2s ease';
-        mainImage.style.opacity = '0';
-
-        setTimeout(function () {
-            mainImage.src = images[idx].src;
-            mainImage.alt = images[idx].label + ' – product image';
-            mainImage.style.opacity = '1';
-
-            // Update active zoom img source
-            zoomImg.src = images[idx].src;
-        }, 200);
-
-        // Update thumb states
-        thumbs[currentIndex].classList.remove('active');
-        thumbs[currentIndex].setAttribute('aria-selected', 'false');
-        currentIndex = idx;
-        thumbs[currentIndex].classList.add('active');
-        thumbs[currentIndex].setAttribute('aria-selected', 'true');
-
-        // Scroll thumb into view
-        thumbs[currentIndex].scrollIntoView({ inline: 'nearest', behavior: 'smooth', block: 'nearest' });
-    }
 
     // Thumb click handlers
     thumbs.forEach(function (thumb, i) {
